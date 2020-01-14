@@ -1,0 +1,54 @@
+<div class="card text-center" style="width: 50rem;margin:0 auto;">
+    <h4 class="card-header"> Profile </h4>
+    <div class="card-body" style="padding: 2rem;">
+        <form #myForm="ngForm">
+            <div class="form-group">
+                <label class="col-sm-2 col-form-label">username </label> {{_username}} <input type="hidden" >
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-form-label">First Name </label> <input type="text"  [(ngModel)]="_firstName" name="firstName" required pattern="[a-zA-Z' -]*" minlength="3" #firstName="ngModel"/>
+
+                <div [hidden]="firstName.valid || firstName.pristine"></div>
+                <p class="blockquote-footer" *ngIf="firstName?.errors?.required"> This field is required.</p>
+                <p class="blockquote-footer" *ngIf="firstName?.errors?.pattern"> Only alphabetical characters, hyphens and apostrophes are allowed.</p>
+                <p class="blockquote-footer" *ngIf="firstName?.errors?.minlength"> This entry must have at least three characters.</p> 
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-form-label">Last Name </label> <input type="text" [(ngModel)]="_lastName" name="lastName" required pattern="[a-zA-Z' -]*" minlength="3" #lastName="ngModel"/>
+
+                <div [hidden]="lastName.valid || lastName.pristine"></div>   
+                <p class="blockquote-footer" *ngIf="lastName?.errors?.required"> This field is required.</p>
+                <p class="blockquote-footer" *ngIf="lastName?.errors?.pattern"> Only alphabetical characters, hyphens and apostrophes are allowed.</p>
+                <p class="blockquote-footer" *ngIf="lastName?.errors?.minlength"> This entry must have at least three characters.</p> 
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-form-label">Address: </label> <input type="text" [(ngModel)]="_streetAddress" name="streetAddress" required #streetAddress="ngModel"/>
+
+                <div [hidden]="streetAddress.valid || streetAddress.pristine"></div>   
+                <p class="blockquote-footer" *ngIf="streetAddress?.errors?.required"> This field is required.</p>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-form-label">Email </label> <input type="email" [(ngModel)]="_email" name="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" #email="ngModel"/>
+                
+                <div [hidden]="email.valid || email.pristine"></div>   
+                <p class="blockquote-footer" *ngIf="email?.errors?.required"> This field is required.</p>
+                <p class="blockquote-footer" *ngIf="email?.errors?.pattern"> Please input a valid email.</p>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-form-label">Phone </label> <input type="text" [(ngModel)]="_phone" name="phone" required pattern="^[0-9]\d{2}.\d{3}.\d{4}$" #phone="ngModel"/>
+
+                <div [hidden]="phone.valid || phone.pristine"></div>   
+                <p class="blockquote-footer" *ngIf="phone?.errors?.required"> This field is required.</p>
+                <p class="blockquote-footer" *ngIf="phone?.errors?.pattern"> Please input a valid phone number(888.888.8888).</p>
+            </div>
+        </form>
+        <input type="submit" value="Update" class="btn btn-light"  [disabled]="!myForm.form.valid" (click)="Update()">
+    </div>
+</div>
+
+

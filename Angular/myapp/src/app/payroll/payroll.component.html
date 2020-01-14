@@ -1,0 +1,38 @@
+<table class="table">
+    <tr>
+        <th scope="col">Username</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Street Address</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Salary($)</th>
+        <th scope="col"></th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>
+            {{user.username}}
+        </td>
+        <td>
+            {{user.firstName}}
+        </td>
+        <td>
+            {{user.lastName}}
+        </td>
+        <td>
+            {{user.streetAddress}}
+        </td>
+        <td>
+            {{user.email}}
+        </td>
+        <td>
+            {{user.phone}}
+        </td>
+        <td>
+            <input type="number" [(ngModel)]="user.payroll">
+        </td>
+        <td>
+            <input type="submit" value="Update Salary" class="btn btn-light" (click)="UpdateSalary(user)">
+        </td>
+    </tr>
+</table>
